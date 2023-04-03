@@ -9,13 +9,7 @@
                         <?php while(the_repeater_field('links_nav')) : ?>
                                 
                                     <?php echo get_sub_field('links_navigation')?>
-                        <!-- <li>
-                            <ul class="socLinks d--flex">
-                                <li><i class="fa-brands fa-facebook"></i></li>
-                                <li><i class="fa-brands fa-instagram"></i></li>
-                                <li><i class="fa-brands fa-twitter"></i></li>
-                            </ul>
-                        </li> -->
+                        
                         <?php
                         endwhile;
                         endif;
@@ -26,24 +20,6 @@
                         endif;
                     ?>
                     <?php wp_reset_postdata();?>
-                    
-                    
-                    <!--
-                    <ul>
-                        <li>Features</li>
-                        <li>Business Marketing</li>
-                        <li>User Analytic</li>
-                        <li>Live Chat</li>
-                        <li>Unlimited Support</li>
-                    </ul>
-                    <ul>
-                        <li>Resources</li>
-                        <li>IOS & Android</li>
-                        <li>Watch a Demo</li>
-                        <li>Customers</li>
-                        <li>API</li>
-                    </ul> -->
-                
                 </div>
             </div>
         </footer>

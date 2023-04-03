@@ -199,110 +199,38 @@
                 </p>
             
                 <div class="pricing__wrapper">
+                    <?php 
+                        $args = array(
+                            'post_type' => 'physionicPost',
+                            'tax_query' => array(
+                                array(
+                                    'taxonomy' => 'category',
+                                    'field' => 'slug',
+                                    'terms' => 'Price'
+                                ),
+                            ),
+                        );
+                        $newQuery = new WP_Query($args);
+                    ?>
+                    <?php if($newQuery->have_posts()) : while($newQuery->have_posts()) : $newQuery->the_post(); ?>
                     <div class="pricing__items p--3 my--3 bg--light">
-                        <h3 class="text--secondary mb--3">FREE</h3>
-                        <p class="t--bold mb--2">Organize across all apps by hand</p>
+                        <h3 class="text--secondary mb--3"><?php the_title(); ?></h3>
+                        <p class="t--bold mb--2"><?php the_excerpt(); ?></p>
                         <ul class="amount text--primary d--flex justify--center align--center mb--2">
-                            <li><h4>0</h4></li>
-                            <li class="text--left">
-                                <p class="t--bold"><small>$</small></p>
-                                <p><small>Per Month</small></p>
-                            </li>
+                            <?php echo get_field('price'); ?>
                         </ul>
                         <ul class="includes mb--3">
-                            <li>
-                                <img src="/img/list-style-main.png" alt="">
-                                <p class="text--secondary">Unlimited product updates</p>
-                            </li>
-                            <li>
-                                <img src="/img/list-style-main.png" alt="">
-                                <p class="text--secondary">Unlimited product updates</p>
-                            </li>
-                            <li>
-                                <img src="/img/list-style-main.png" alt="">
-                                <p class="text--secondary">Unlimited product updates</p>
-                            </li>
-                            <li>
-                                <img src="/img/list-style-gray.png" alt="">
-                                <p class="text--secondary">1GB Cloud storage</p>
-                            </li>
-                            <li>
-                                <img src="/img/list-style-gray.png" alt="">
-                                <p class="text--secondary">Email and community support</p>
-                            </li>
+                            <?php the_content(); ?>
                         </ul>
                         <a href="#" class="btn bg--primary">Try for free</a>
                     </div>
-
-                    <div class="pricing__items p--3 my--3 bg--secondary">
-                        <h3 class="text--secondary mb--3">STANDARD</h3>
-                        <p class="t--bold mb--2">Organize across all apps by hand</p>
-                        <ul class="amount text--primary d--flex justify--center align--center mb--2">
-                            <li><h4>9.99</h4></li>
-                            <li class="text--left">
-                                <p class="t--bold"><small>$</small></p>
-                                <p><small>Per Month</small></p>
-                            </li>
-                        </ul>
-                        <ul class="includes mb--3">
-                            <li>
-                                <img src="/img/list-style-main.png" alt="">
-                                <p class="text--secondary">Unlimited product updates</p>
-                            </li>
-                            <li>
-                                <img src="/img/list-style-main.png" alt="">
-                                <p class="text--secondary">Unlimited product updates</p>
-                            </li>
-                            <li>
-                                <img src="/img/list-style-main.png" alt="">
-                                <p class="text--secondary">Unlimited product updates</p>
-                            </li>
-                            <li>
-                                <img src="/img/list-style-gray.png" alt="">
-                                <p class="text--secondary">1GB Cloud storage</p>
-                            </li>
-                            <li>
-                                <img src="/img/list-style-gray.png" alt="">
-                                <p class="text--secondary">Email and community support</p>
-                            </li>
-                        </ul>
-                        <a href="#" class="btn bg--primary">Try for free</a>
-                    </div>
-
-                    <div class="pricing__items p--3 my--3 bg--light">
-                        <h3 class="text--secondary mb--3">PREMIUM</h3>
-                        <p class="t--bold mb--2">Organize across all apps by hand</p>
-                        <ul class="amount text--primary d--flex justify--center align--center mb--2">
-                            <li><h4>19.99</h4></li>
-                            <li class="text--left">
-                                <p class="t--bold"><small>$</small></p>
-                                <p><small>Per Month</small></p>
-                            </li>
-                        </ul>
-                        <ul class="includes mb--3">
-                            <li>
-                                <img src="/img/list-style-main.png" alt="">
-                                <p class="text--secondary">Unlimited product updates</p>
-                            </li>
-                            <li>
-                                <img src="/img/list-style-main.png" alt="">
-                                <p class="text--secondary">Unlimited product updates</p>
-                            </li>
-                            <li>
-                                <img src="/img/list-style-main.png" alt="">
-                                <p class="text--secondary">Unlimited product updates</p>
-                            </li>
-                            <li>
-                                <img src="/img/list-style-gray.png" alt="">
-                                <p class="text--secondary">1GB Cloud storage</p>
-                            </li>
-                            <li>
-                                <img src="/img/list-style-gray.png" alt="">
-                                <p class="text--secondary">Email and community support</p>
-                            </li>
-                        </ul>
-                        <a href="#" class="btn bg--primary">Try for free</a>
-                    </div>
+                    <?php 
+                        endwhile;
+                        else :
+                            echo "There is no content here";
+                        endif;
+                        wp_reset_postdata();
+                    ?>
                 </div>
             </div>
         </section>
